@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>PushBots Web SDK</title>
+		<script>
+		//some default pre init
+		var PB = PB || {};PB.q = PB.q || [];PB.events = PB.events || [];
+		
+		//PushBots ApplicationId (required)
+		PB.app_id = "";
+		//Your domain name, must be HTTPS or localhost  (required)
+		PB.domain = "https://www.";
+		PB.logging_enabled = true;
+		PB.auto_subscribe = true;
+		//Welcome notification message
+		PB.welcome = {title:"Welcome 🙌🎉",message:"Thanks for subscribing!"};
+		
+		//Async functions
+		//PB.q.push(["tag", ['test', "test3"]]);
+		//PB.q.push(["alias", "username"]);
+		//PB.q.push(["untag", ['test', "test3"]]);
+		//Toggle notification subscription
+		//PB.q.push(["subscribe", true]);
+		
+
+		function sendNotification(){
+			PB.q.push(["sendNotification", {title:"Hey 🐬",message:"Why not?", url :"https://google.com"}]);
+		}
+
+		//Pushbots events
+		PB.events.push(["onRegistered", function(data){
+			console.log("onRegistered" , data);
+		}]);
+		PB.events.push(["onRegisteredOnPushBots", function(data){
+			console.log("onRegisteredOnPushBots", data);
+		}]);
+			
+		</script>
+		
+		<script src="sdk.min.js" type="text/javascript" onload="PB.init()" async></script>
+    </head>
+    <body>
+        <p>PushBots Web SDK</p>
+		 <button onclick="sendNotification()">Send notification</button>
+    </body>
+</html>
